@@ -1,13 +1,27 @@
 var http = require('http');
 
-function sayHello(req, res){
+function callback(req, res){
     console.log("Recieved a request for: " + req.url);
-
-    res.write("Hello World!!");
+if(req == "/home")
+{
+    res.write("<h1>Welcome Home Page")
+}
+else if(req == "/getData"){
+    function jsoncode() {<script type="text/javascript">
+      info = {"Name":"Valter Barreto"};
+      alert(info);
+    </script>
+    }
+    res.write(info);
+}
+else{
+    response.writeHead(404, {"Content-Type": "text/html"});
+}
+    
     res.end();
 
 }
-var server = http.createServer(sayHello);
-server.listen(5000);
+var server = http.createServer(callback);
+server.listen(8888);
 
 console.log("The server is listening on port 5000!")
