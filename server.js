@@ -26,10 +26,11 @@ function callback(req, res){
             res.writeHead(404, { "Content-Type": "text/html" });
             res.write('404: Page Not Found');
             res.end();
+    }
     
  
 }
 var server = http.createServer(callback);
 server.listen(8888);
 
-console.log("The server is listening on port 5000!")
+console.log("The server is listening on port 8888!");
