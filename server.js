@@ -1,21 +1,33 @@
 var http = require('http');
 
-function callback(req, res){
-    console.log("Recieved a request for: " + req.url);
-if(req == "/home")
-{
-    res.write("<h1>Welcome Home Page")
-}
-else if(req == "/getData"){
-    
-    res.write("Valter Barreto");
-}
-else{
-    response.writeHead(404, {"Content-Type": "text/html"});
-}
-    
-    res.end();
+var jsonObj;
+var jsonArr;
 
+function callback(req, res){
+    switch (req.url) {
+        case '/home':
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write("<h1>Welcome to the Home Page</h1>");
+            res.end();
+            break;
+
+        case '/getData':
+            jsonObj = fs.readFileSync("my-json.json");
+            jsonArr = JSON.parse(jsonObj);
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.write("My Name: " + jsonArr.name + "\n");
+            res.write("Current Class: " + jsonArr.class + "\n");
+            res.write("Stringify JSON Object: " + JSON.stringify(jsonArr));
+            res.end();
+            break;
+
+        default:
+            res.writeHead(404, { "Content-Type": "text/html" });
+            res.write('404: Page Not Found');
+            res.end();
+    
+ 
 }
 var server = http.createServer(callback);
 server.listen(8888);
