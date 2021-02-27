@@ -7,12 +7,8 @@ if(req == "/home")
     res.write("<h1>Welcome Home Page")
 }
 else if(req == "/getData"){
-    function jsoncode() {<script type="text/javascript">
-      info = {"Name":"Valter Barreto"};
-      alert(info);
-    </script>
-    }
-    res.write(info);
+    
+    res.write("Valter Barreto");
 }
 else{
     response.writeHead(404, {"Content-Type": "text/html"});
